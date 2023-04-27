@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Assets/Scripts/Currently Used/World/SwitchScript.gd" type="Script" id=1]
+
+[sub_resource type="SpatialMaterial" id=34]
+albedo_color = Color( 0, 0.576471, 0.101961, 1 )
+
+[sub_resource type="SpatialMaterial" id=31]
+albedo_color = Color( 1, 0, 0, 1 )
+
+[sub_resource type="CylinderMesh" id=32]
+material = SubResource( 31 )
+height = 0.1
+
+[sub_resource type="BoxShape" id=33]
+
+[node name="FloorSwitch" type="Spatial" groups=["InteractableByScript"]]
+script = ExtResource( 1 )
+_activeMaterial = SubResource( 34 )
+
+[node name="Model" type="MeshInstance" parent="."]
+mesh = SubResource( 32 )
+material/0 = null
+
+[node name="Area" type="Area" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Area"]
+shape = SubResource( 33 )
+
+[connection signal="body_entered" from="Area" to="." method="OnPlayerEnter"]

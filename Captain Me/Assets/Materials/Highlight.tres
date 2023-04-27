@@ -1,0 +1,37 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=2]
+
+[sub_resource type="SpatialMaterial" id=2]
+render_priority = 127
+
+[sub_resource type="Shader" id=1]
+code = "shader_type spatial;
+
+render_mode depth_test_disable, skip_vertex_transform, unshaded;
+
+void vertex() {
+
+	VERTEX = (MODELVIEW_MATRIX * vec4(VERTEX, 1.0)).xyz;
+	
+}
+
+void fragment() {
+	
+	float zdepth = texture(DEPTH_TEXTURE, SCREEN_UV).r;
+    float zpos = FRAGCOORD.z;
+	
+	if (zdepth < zpos) {
+		
+		ALBEDO = vec3(0,0,0);
+		ALPHA = 0.5;
+	
+	} else {
+		discard;
+	}
+}
+
+// credit:  https://github.com/effectivearm7/occludedhighlight"
+
+[resource]
+render_priority = -88
+next_pass = SubResource( 2 )
+shader = SubResource( 1 )

@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Assets/Scripts/Currently Used/Player/TossNGrab.gd" type="Script" id=1]
+
+[node name="TossNGrab" type="Spatial"]
+script = ExtResource( 1 )
+
+[node name="RayCast" type="RayCast" parent="."]
+enabled = true
+cast_to = Vector3( 0, 0, 2 )
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="HoldPos" type="Spatial" parent="."]

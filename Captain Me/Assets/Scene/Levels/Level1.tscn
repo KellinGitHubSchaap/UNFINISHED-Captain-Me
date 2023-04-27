@@ -1,0 +1,319 @@
+[gd_scene load_steps=46 format=2]
+
+[ext_resource path="res://Assets/Textures/SkyPanorama.png" type="Texture" id=1]
+[ext_resource path="res://Assets/Prefabs/Particle Trail Effect.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Assets/Prefabs/Player.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Assets/Scripts/Currently Used/World/EnvironmentInteraction.gd" type="Script" id=4]
+
+[sub_resource type="SpatialMaterial" id=14]
+albedo_color = Color( 0.580392, 1, 0.517647, 1 )
+
+[sub_resource type="CubeMesh" id=1]
+material = SubResource( 14 )
+size = Vector3( 6, 2, 4 )
+
+[sub_resource type="ConcavePolygonShape" id=30]
+data = PoolVector3Array( -3, 1, 2, 3, 1, 2, -3, -1, 2, 3, 1, 2, 3, -1, 2, -3, -1, 2, 3, 1, -2, -3, 1, -2, 3, -1, -2, -3, 1, -2, -3, -1, -2, 3, -1, -2, 3, 1, 2, 3, 1, -2, 3, -1, 2, 3, 1, -2, 3, -1, -2, 3, -1, 2, -3, 1, -2, -3, 1, 2, -3, -1, -2, -3, 1, 2, -3, -1, 2, -3, -1, -2, 3, 1, 2, -3, 1, 2, 3, 1, -2, -3, 1, 2, -3, 1, -2, 3, 1, -2, -3, -1, 2, 3, -1, 2, -3, -1, -2, 3, -1, 2, 3, -1, -2, -3, -1, -2 )
+
+[sub_resource type="SpatialMaterial" id=15]
+albedo_color = Color( 0.580392, 1, 0.517647, 1 )
+
+[sub_resource type="CubeMesh" id=2]
+material = SubResource( 15 )
+size = Vector3( 4, 2, 8 )
+
+[sub_resource type="ConcavePolygonShape" id=31]
+data = PoolVector3Array( -2, 1, 4, 2, 1, 4, -2, -1, 4, 2, 1, 4, 2, -1, 4, -2, -1, 4, 2, 1, -4, -2, 1, -4, 2, -1, -4, -2, 1, -4, -2, -1, -4, 2, -1, -4, 2, 1, 4, 2, 1, -4, 2, -1, 4, 2, 1, -4, 2, -1, -4, 2, -1, 4, -2, 1, -4, -2, 1, 4, -2, -1, -4, -2, 1, 4, -2, -1, 4, -2, -1, -4, 2, 1, 4, -2, 1, 4, 2, 1, -4, -2, 1, 4, -2, 1, -4, 2, 1, -4, -2, -1, 4, 2, -1, 4, -2, -1, -4, 2, -1, 4, 2, -1, -4, -2, -1, -4 )
+
+[sub_resource type="SpatialMaterial" id=16]
+albedo_color = Color( 0.580392, 1, 0.517647, 1 )
+
+[sub_resource type="CubeMesh" id=3]
+material = SubResource( 16 )
+size = Vector3( 6, 2, 6 )
+
+[sub_resource type="ConcavePolygonShape" id=32]
+data = PoolVector3Array( -3, 1, 3, 3, 1, 3, -3, -1, 3, 3, 1, 3, 3, -1, 3, -3, -1, 3, 3, 1, -3, -3, 1, -3, 3, -1, -3, -3, 1, -3, -3, -1, -3, 3, -1, -3, 3, 1, 3, 3, 1, -3, 3, -1, 3, 3, 1, -3, 3, -1, -3, 3, -1, 3, -3, 1, -3, -3, 1, 3, -3, -1, -3, -3, 1, 3, -3, -1, 3, -3, -1, -3, 3, 1, 3, -3, 1, 3, 3, 1, -3, -3, 1, 3, -3, 1, -3, 3, 1, -3, -3, -1, 3, 3, -1, 3, -3, -1, -3, 3, -1, 3, 3, -1, -3, -3, -1, -3 )
+
+[sub_resource type="SpatialMaterial" id=17]
+albedo_color = Color( 0.580392, 1, 0.517647, 1 )
+
+[sub_resource type="CubeMesh" id=4]
+material = SubResource( 17 )
+size = Vector3( 2, 2, 4 )
+
+[sub_resource type="ConcavePolygonShape" id=33]
+data = PoolVector3Array( -1, 1, 2, 1, 1, 2, -1, -1, 2, 1, 1, 2, 1, -1, 2, -1, -1, 2, 1, 1, -2, -1, 1, -2, 1, -1, -2, -1, 1, -2, -1, -1, -2, 1, -1, -2, 1, 1, 2, 1, 1, -2, 1, -1, 2, 1, 1, -2, 1, -1, -2, 1, -1, 2, -1, 1, -2, -1, 1, 2, -1, -1, -2, -1, 1, 2, -1, -1, 2, -1, -1, -2, 1, 1, 2, -1, 1, 2, 1, 1, -2, -1, 1, 2, -1, 1, -2, 1, 1, -2, -1, -1, 2, 1, -1, 2, -1, -1, -2, 1, -1, 2, 1, -1, -2, -1, -1, -2 )
+
+[sub_resource type="SpatialMaterial" id=18]
+albedo_color = Color( 0.239216, 0.439216, 0.207843, 1 )
+
+[sub_resource type="PrismMesh" id=5]
+material = SubResource( 18 )
+left_to_right = 1.0
+size = Vector3( 4, 4, 2 )
+
+[sub_resource type="ConcavePolygonShape" id=34]
+data = PoolVector3Array( 2, 2, 1, 2, -2, 1, -2, -2, 1, 2, 2, -1, -2, -2, -1, 2, -2, -1, 2, 2, 1, 2, 2, -1, 2, -2, 1, 2, 2, -1, 2, -2, -1, 2, -2, 1, 2, 2, -1, 2, 2, 1, -2, -2, -1, 2, 2, 1, -2, -2, 1, -2, -2, -1, -2, -2, 1, 2, -2, 1, -2, -2, -1, 2, -2, 1, 2, -2, -1, -2, -2, -1 )
+
+[sub_resource type="SpatialMaterial" id=19]
+albedo_color = Color( 0.533333, 0.65098, 0.670588, 1 )
+
+[sub_resource type="CubeMesh" id=6]
+material = SubResource( 19 )
+size = Vector3( 4, 6, 4 )
+
+[sub_resource type="ConcavePolygonShape" id=35]
+data = PoolVector3Array( -2, 3, 2, 2, 3, 2, -2, -3, 2, 2, 3, 2, 2, -3, 2, -2, -3, 2, 2, 3, -2, -2, 3, -2, 2, -3, -2, -2, 3, -2, -2, -3, -2, 2, -3, -2, 2, 3, 2, 2, 3, -2, 2, -3, 2, 2, 3, -2, 2, -3, -2, 2, -3, 2, -2, 3, -2, -2, 3, 2, -2, -3, -2, -2, 3, 2, -2, -3, 2, -2, -3, -2, 2, 3, 2, -2, 3, 2, 2, 3, -2, -2, 3, 2, -2, 3, -2, 2, 3, -2, -2, -3, 2, 2, -3, 2, -2, -3, -2, 2, -3, 2, 2, -3, -2, -2, -3, -2 )
+
+[sub_resource type="SpatialMaterial" id=20]
+albedo_color = Color( 0.533333, 0.65098, 0.670588, 1 )
+
+[sub_resource type="CubeMesh" id=7]
+material = SubResource( 20 )
+size = Vector3( 2, 6, 2 )
+
+[sub_resource type="ConcavePolygonShape" id=36]
+data = PoolVector3Array( -1, 3, 1, 1, 3, 1, -1, -3, 1, 1, 3, 1, 1, -3, 1, -1, -3, 1, 1, 3, -1, -1, 3, -1, 1, -3, -1, -1, 3, -1, -1, -3, -1, 1, -3, -1, 1, 3, 1, 1, 3, -1, 1, -3, 1, 1, 3, -1, 1, -3, -1, 1, -3, 1, -1, 3, -1, -1, 3, 1, -1, -3, -1, -1, 3, 1, -1, -3, 1, -1, -3, -1, 1, 3, 1, -1, 3, 1, 1, 3, -1, -1, 3, 1, -1, 3, -1, 1, 3, -1, -1, -3, 1, 1, -3, 1, -1, -3, -1, 1, -3, 1, 1, -3, -1, -1, -3, -1 )
+
+[sub_resource type="SpatialMaterial" id=21]
+albedo_color = Color( 0.294118, 0.360784, 0.368627, 1 )
+
+[sub_resource type="CubeMesh" id=13]
+material = SubResource( 21 )
+size = Vector3( 2, 6, 2 )
+
+[sub_resource type="SpatialMaterial" id=22]
+albedo_color = Color( 0.294118, 0.360784, 0.368627, 1 )
+
+[sub_resource type="PrismMesh" id=8]
+material = SubResource( 22 )
+left_to_right = 1.0
+
+[sub_resource type="ConcavePolygonShape" id=37]
+data = PoolVector3Array( 1, 1, 1, 1, -1, 1, -1, -1, 1, 1, 1, -1, -1, -1, -1, 1, -1, -1, 1, 1, 1, 1, 1, -1, 1, -1, 1, 1, 1, -1, 1, -1, -1, 1, -1, 1, 1, 1, -1, 1, 1, 1, -1, -1, -1, 1, 1, 1, -1, -1, 1, -1, -1, -1, -1, -1, 1, 1, -1, 1, -1, -1, -1, 1, -1, 1, 1, -1, -1, -1, -1, -1 )
+
+[sub_resource type="SpatialMaterial" id=23]
+albedo_color = Color( 0.662745, 0.482353, 0.784314, 1 )
+
+[sub_resource type="CubeMesh" id=9]
+material = SubResource( 23 )
+size = Vector3( 2, 8, 2 )
+
+[sub_resource type="ConcavePolygonShape" id=38]
+data = PoolVector3Array( -1, 4, 1, 1, 4, 1, -1, -4, 1, 1, 4, 1, 1, -4, 1, -1, -4, 1, 1, 4, -1, -1, 4, -1, 1, -4, -1, -1, 4, -1, -1, -4, -1, 1, -4, -1, 1, 4, 1, 1, 4, -1, 1, -4, 1, 1, 4, -1, 1, -4, -1, 1, -4, 1, -1, 4, -1, -1, 4, 1, -1, -4, -1, -1, 4, 1, -1, -4, 1, -1, -4, -1, 1, 4, 1, -1, 4, 1, 1, 4, -1, -1, 4, 1, -1, 4, -1, 1, 4, -1, -1, -4, 1, 1, -4, 1, -1, -4, -1, 1, -4, 1, 1, -4, -1, -1, -4, -1 )
+
+[sub_resource type="SpatialMaterial" id=24]
+albedo_color = Color( 0.662745, 0.482353, 0.784314, 1 )
+
+[sub_resource type="CubeMesh" id=10]
+material = SubResource( 24 )
+size = Vector3( 4, 8, 2 )
+
+[sub_resource type="ConcavePolygonShape" id=39]
+data = PoolVector3Array( -2, 4, 1, 2, 4, 1, -2, -4, 1, 2, 4, 1, 2, -4, 1, -2, -4, 1, 2, 4, -1, -2, 4, -1, 2, -4, -1, -2, 4, -1, -2, -4, -1, 2, -4, -1, 2, 4, 1, 2, 4, -1, 2, -4, 1, 2, 4, -1, 2, -4, -1, 2, -4, 1, -2, 4, -1, -2, 4, 1, -2, -4, -1, -2, 4, 1, -2, -4, 1, -2, -4, -1, 2, 4, 1, -2, 4, 1, 2, 4, -1, -2, 4, 1, -2, 4, -1, 2, 4, -1, -2, -4, 1, 2, -4, 1, -2, -4, -1, 2, -4, 1, 2, -4, -1, -2, -4, -1 )
+
+[sub_resource type="SpatialMaterial" id=25]
+albedo_color = Color( 0.662745, 0.482353, 0.784314, 1 )
+
+[sub_resource type="CubeMesh" id=11]
+material = SubResource( 25 )
+size = Vector3( 6, 2, 6 )
+
+[sub_resource type="ConcavePolygonShape" id=40]
+data = PoolVector3Array( -3, 1, 3, 3, 1, 3, -3, -1, 3, 3, 1, 3, 3, -1, 3, -3, -1, 3, 3, 1, -3, -3, 1, -3, 3, -1, -3, -3, 1, -3, -3, -1, -3, 3, -1, -3, 3, 1, 3, 3, 1, -3, 3, -1, 3, 3, 1, -3, 3, -1, -3, 3, -1, 3, -3, 1, -3, -3, 1, 3, -3, -1, -3, -3, 1, 3, -3, -1, 3, -3, -1, -3, 3, 1, 3, -3, 1, 3, 3, 1, -3, -3, 1, 3, -3, 1, -3, 3, 1, -3, -3, -1, 3, 3, -1, 3, -3, -1, -3, 3, -1, 3, 3, -1, -3, -3, -1, -3 )
+
+[sub_resource type="SpatialMaterial" id=26]
+albedo_color = Color( 0.662745, 0.482353, 0.784314, 1 )
+
+[sub_resource type="CubeMesh" id=12]
+material = SubResource( 26 )
+
+[sub_resource type="ConcavePolygonShape" id=41]
+data = PoolVector3Array( -1, 1, 1, 1, 1, 1, -1, -1, 1, 1, 1, 1, 1, -1, 1, -1, -1, 1, 1, 1, -1, -1, 1, -1, 1, -1, -1, -1, 1, -1, -1, -1, -1, 1, -1, -1, 1, 1, 1, 1, 1, -1, 1, -1, 1, 1, 1, -1, 1, -1, -1, 1, -1, 1, -1, 1, -1, -1, 1, 1, -1, -1, -1, -1, 1, 1, -1, -1, 1, -1, -1, -1, 1, 1, 1, -1, 1, 1, 1, 1, -1, -1, 1, 1, -1, 1, -1, 1, 1, -1, -1, -1, 1, 1, -1, 1, -1, -1, -1, 1, -1, 1, 1, -1, -1, -1, -1, -1 )
+
+[sub_resource type="PanoramaSky" id=27]
+panorama = ExtResource( 1 )
+
+[sub_resource type="Environment" id=28]
+background_mode = 2
+background_sky = SubResource( 27 )
+ambient_light_sky_contribution = 0.0
+
+[sub_resource type="GIProbeData" id=29]
+bounds = AABB( -20, -20, -20, 40, 40, 40 )
+cell_size = 0.3125
+to_cell_xform = Transform( 3.2, 0, 0, 0, 3.2, 0, 0, 0, 3.2, 64, 64, 64 )
+dynamic_data = PoolIntArray( 0, 8, 128, 128, 128, 1, 0, 0, 0, 0, 0, 0, 7, 0, 9, 3979, -1, -1, -1, -1, -1, -1, -1, -1, 0, 0, 8355711, 0 )
+dynamic_range = 4
+bias = 1.5
+normal_bias = 0.0
+propagation = 0.7
+
+[node name="World" type="Spatial"]
+script = ExtResource( 4 )
+
+[node name="Environment" type="Spatial" parent="."]
+
+[node name="Base" type="Spatial" parent="Environment"]
+
+[node name="Level 0" type="Spatial" parent="Environment/Base"]
+
+[node name="MeshInstance" type="MeshInstance" parent="Environment/Base/Level 0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 6 )
+mesh = SubResource( 1 )
+skeleton = NodePath("../..")
+material/0 = null
+
+[node name="StaticBody" type="StaticBody" parent="Environment/Base/Level 0/MeshInstance"]
+
+[node name="CollisionShape" type="CollisionShape" parent="Environment/Base/Level 0/MeshInstance/StaticBody"]
+shape = SubResource( 30 )
+
+[node name="MeshInstance2" type="MeshInstance" parent="Environment/Base/Level 0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="StaticBody" type="StaticBody" parent="Environment/Base/Level 0/MeshInstance2"]
+
+[node name="CollisionShape" type="CollisionShape" parent="Environment/Base/Level 0/MeshInstance2/StaticBody"]
+shape = SubResource( 31 )
+
+[node name="MeshInstance3" type="MeshInstance" parent="Environment/Base/Level 0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -1 )
+mesh = SubResource( 3 )
+material/0 = null
+
+[node name="StaticBody" type="StaticBody" parent="Environment/Base/Level 0/MeshInstance3"]
+
+[node name="CollisionShape" type="CollisionShape" parent="Environment/Base/Level 0/MeshInstance3/StaticBody"]
+shape = SubResource( 32 )
+
+[node name="MeshInstance4" type="MeshInstance" parent="Environment/Base/Level 0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -2 )
+mesh = SubResource( 4 )
+material/0 = null
+
+[node name="StaticBody" type="StaticBody" parent="Environment/Base/Level 0/MeshInstance4"]
+
+[node name="CollisionShape" type="CollisionShape" parent="Environment/Base/Level 0/MeshInstance4/StaticBody"]
+shape = SubResource( 33 )
+
+[node name="Level 1" type="Spatial" parent="Environment/Base"]
+
+[node name="MeshInstance5" type="MeshInstance" parent="Environment/Base/Level 1"]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -5, 3, 2 )
+mesh = SubResource( 5 )
+skeleton = NodePath("../../Level 0")
+material/0 = null
+
+[node name="StaticBody" type="StaticBody" parent="Environment/Base/Level 1/MeshInstance5"]
+
+[node name="CollisionShape" type="CollisionShape" parent="Environment/Base/Level 1/MeshInstance5/StaticBody"]
+shape = SubResource( 34 )
+
+[node name="Level 2" type="Spatial" parent="Environment/Base"]
+
+[node name="MeshInstance" type="MeshInstance" parent="Environment/Base/Level 2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 2, 6 )
+mesh = SubResource( 6 )
+material/0 = null
+
+[node name="StaticBody" type="StaticBody" parent="Environment/Base/Level 2/MeshInstance"]
+
+[node name="CollisionShape" type="CollisionShape" parent="Environment/Base/Level 2/MeshInstance/StaticBody"]
+shape = SubResource( 35 )
+
+[node name="MeshInstance2" type="MeshInstance" parent="Environment/Base/Level 2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 2, 7 )
+mesh = SubResource( 7 )
+material/0 = null
+
+[node name="StaticBody" type="StaticBody" parent="Environment/Base/Level 2/MeshInstance2"]
+
+[node name="CollisionShape" type="CollisionShape" parent="Environment/Base/Level 2/MeshInstance2/StaticBody"]
+shape = SubResource( 36 )
+
+[node name="MeshInstance3" type="MeshInstance" parent="Environment/Base/Level 2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 2, 5 )
+mesh = SubResource( 13 )
+material/0 = null
+
+[node name="Level 3" type="Spatial" parent="Environment/Base"]
+
+[node name="MeshInstance" type="MeshInstance" parent="Environment/Base/Level 3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 6, 5 )
+mesh = SubResource( 8 )
+material/0 = null
+
+[node name="StaticBody" type="StaticBody" parent="Environment/Base/Level 3/MeshInstance"]
+
+[node name="CollisionShape" type="CollisionShape" parent="Environment/Base/Level 3/MeshInstance/StaticBody"]
+shape = SubResource( 37 )
+
+[node name="MeshInstance2" type="MeshInstance" parent="Environment/Base/Level 3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 3, 3 )
+mesh = SubResource( 9 )
+material/0 = null
+
+[node name="StaticBody" type="StaticBody" parent="Environment/Base/Level 3/MeshInstance2"]
+
+[node name="CollisionShape" type="CollisionShape" parent="Environment/Base/Level 3/MeshInstance2/StaticBody"]
+shape = SubResource( 38 )
+
+[node name="MeshInstance3" type="MeshInstance" parent="Environment/Base/Level 3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 3, 3 )
+mesh = SubResource( 10 )
+material/0 = null
+
+[node name="StaticBody" type="StaticBody" parent="Environment/Base/Level 3/MeshInstance3"]
+
+[node name="CollisionShape" type="CollisionShape" parent="Environment/Base/Level 3/MeshInstance3/StaticBody"]
+shape = SubResource( 39 )
+
+[node name="MeshInstance4" type="MeshInstance" parent="Environment/Base/Level 3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 6, -1 )
+mesh = SubResource( 11 )
+material/0 = null
+
+[node name="StaticBody" type="StaticBody" parent="Environment/Base/Level 3/MeshInstance4"]
+
+[node name="CollisionShape" type="CollisionShape" parent="Environment/Base/Level 3/MeshInstance4/StaticBody"]
+shape = SubResource( 40 )
+
+[node name="MeshInstance5" type="MeshInstance" parent="Environment/Base/Level 3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 6, 5 )
+mesh = SubResource( 12 )
+material/0 = null
+
+[node name="StaticBody" type="StaticBody" parent="Environment/Base/Level 3/MeshInstance5"]
+
+[node name="CollisionShape" type="CollisionShape" parent="Environment/Base/Level 3/MeshInstance5/StaticBody"]
+shape = SubResource( 41 )
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Environment"]
+environment = SubResource( 28 )
+
+[node name="DirectionalLight" type="DirectionalLight" parent="Environment"]
+transform = Transform( -4.37114e-08, -0.707107, 0.707107, 0, 0.707107, 0.707107, -1, 3.09086e-08, -3.09086e-08, 0, 10.5, -10.8 )
+shadow_enabled = true
+shadow_color = Color( 0.760784, 0.760784, 0.760784, 1 )
+
+[node name="GIProbe" type="GIProbe" parent="Environment"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5, 1.1 )
+extents = Vector3( 20, 20, 20 )
+data = SubResource( 29 )
+
+[node name="Collectables" type="Spatial" parent="."]
+
+[node name="Interactables" type="Spatial" parent="."]
+
+[node name="Player" parent="." instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.6, 2, 4.81035 )
+
+[node name="Particle Trail Effect" parent="." instance=ExtResource( 2 )]
+
+[editable path="Player"]
+[editable path="Player/Owl"]
+[editable path="Particle Trail Effect"]

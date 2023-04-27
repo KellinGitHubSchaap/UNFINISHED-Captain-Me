@@ -1,0 +1,45 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Learning/occludedHighlight.tres" type="Material" id=2]
+
+[sub_resource type="CubeMesh" id=1]
+size = Vector3( 2.71, 5.95, 0.7 )
+
+[sub_resource type="SphereMesh" id=3]
+
+[sub_resource type="CubeMesh" id=5]
+material = ExtResource( 2 )
+
+[node name="Spatial" type="Spatial"]
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.1993, 0, 0 )
+mesh = SubResource( 1 )
+material/0 = null
+
+[node name="Spatial" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.1993, 0, 0 )
+
+[node name="MeshInstance2" type="MeshInstance" parent="Spatial"]
+transform = Transform( 0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, -0.396276, 0.00364697, -2.01376 )
+use_in_baked_light = true
+
+[node name="Spatial2" type="Spatial" parent="."]
+visible = false
+
+[node name="MeshInstance4" type="MeshInstance" parent="Spatial2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.221048, 0.00321388, -0.00241137 )
+material_override = ExtResource( 2 )
+extra_cull_margin = 10823.8
+mesh = SubResource( 3 )
+material/0 = null
+
+[node name="MeshInstance5" type="MeshInstance" parent="Spatial2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.08743, 0 )
+mesh = SubResource( 3 )
+material/0 = null
+
+[node name="MeshInstance2" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.37035, 2.38419e-07, 0.00013876 )
+mesh = SubResource( 5 )
+material/0 = null

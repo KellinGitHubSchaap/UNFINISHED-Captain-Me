@@ -1,0 +1,253 @@
+[gd_scene load_steps=30 format=2]
+
+[ext_resource path="res://Assets/Shaders/ScreenDistortion_Mirage.tres" type="Material" id=1]
+[ext_resource path="res://Assets/Textures/pngkit_water-texture-png_2130628.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Shaders/ScreenDistortion_Water.tres" type="Material" id=3]
+[ext_resource path="res://Assets/Textures/CirculairGradient.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Scripts/SnowControlInput.gd" type="Script" id=5]
+[ext_resource path="res://Assets/Shaders/Snow.tres" type="Shader" id=6]
+
+[sub_resource type="PlaneMesh" id=13]
+material = ExtResource( 1 )
+
+[sub_resource type="SphereMesh" id=16]
+material = ExtResource( 1 )
+radius = 5.0
+height = 10.0
+
+[sub_resource type="CubeMesh" id=15]
+size = Vector3( 1, 1, 1 )
+
+[sub_resource type="ViewportTexture" id=25]
+viewport_path = NodePath("Dynamic Snow Shader/Snow/Viewport")
+
+[sub_resource type="PlaneMesh" id=23]
+subdivide_width = 64
+subdivide_depth = 64
+
+[sub_resource type="ShaderMaterial" id=50]
+shader = ExtResource( 6 )
+
+[sub_resource type="SphereMesh" id=24]
+radius = 0.25
+height = 0.5
+radial_segments = 8
+rings = 12
+
+[sub_resource type="OpenSimplexNoise" id=42]
+
+[sub_resource type="NoiseTexture" id=43]
+seamless = true
+noise = SubResource( 42 )
+
+[sub_resource type="VisualShaderNodeTexture" id=44]
+texture = SubResource( 43 )
+
+[sub_resource type="Gradient" id=45]
+offsets = PoolRealArray( 0.126, 0.616 )
+colors = PoolColorArray( 0.4, 0.4, 0.4, 1, 1, 1, 1, 1 )
+
+[sub_resource type="GradientTexture" id=46]
+gradient = SubResource( 45 )
+
+[sub_resource type="VisualShaderNodeTexture" id=47]
+texture = SubResource( 46 )
+
+[sub_resource type="VisualShaderNodeVectorOp" id=48]
+
+[sub_resource type="VisualShaderNodeScalarConstant" id=49]
+constant = 2.0
+
+[sub_resource type="VisualShader" id=38]
+code = "shader_type spatial;
+render_mode specular_schlick_ggx;
+
+uniform sampler2D tex_frg_2;
+uniform sampler2D tex_frg_3;
+
+
+
+void vertex() {
+// Output:0
+
+}
+
+void fragment() {
+// Texture:2
+	vec4 tex_frg_2_read = texture(tex_frg_2, UV.xy);
+	vec3 n_out2p0 = tex_frg_2_read.rgb;
+	float n_out2p1 = tex_frg_2_read.a;
+
+// Texture:3
+	vec4 tex_frg_3_read = texture(tex_frg_3, n_out2p0.xy);
+	vec3 n_out3p0 = tex_frg_3_read.rgb;
+	float n_out3p1 = tex_frg_3_read.a;
+
+// Scalar:6
+	float n_out6p0 = 2.000000;
+
+// VectorOp:5
+	vec3 n_out5p0 = n_out3p0 + vec3(n_out6p0);
+
+// Output:0
+	ALBEDO = n_out5p0;
+
+}
+
+void light() {
+// Output:0
+
+}
+"
+graph_offset = Vector2( 149.337, 52.6703 )
+nodes/fragment/2/node = SubResource( 44 )
+nodes/fragment/2/position = Vector2( -240, 120 )
+nodes/fragment/3/node = SubResource( 47 )
+nodes/fragment/3/position = Vector2( -20, 120 )
+nodes/fragment/5/node = SubResource( 48 )
+nodes/fragment/5/position = Vector2( 180, 180 )
+nodes/fragment/6/node = SubResource( 49 )
+nodes/fragment/6/position = Vector2( 0, 360 )
+nodes/fragment/connections = PoolIntArray( 2, 0, 3, 0, 3, 0, 5, 0, 6, 0, 5, 1, 5, 0, 0, 0 )
+
+[sub_resource type="ShaderMaterial" id=39]
+shader = SubResource( 38 )
+
+[sub_resource type="CubeMesh" id=7]
+material = ExtResource( 3 )
+size = Vector3( 10, 10, 10 )
+
+[sub_resource type="SpatialMaterial" id=3]
+albedo_color = Color( 1, 0, 0, 1 )
+
+[sub_resource type="SphereMesh" id=4]
+material = SubResource( 3 )
+radius = 2.0
+height = 4.0
+radial_segments = 8
+rings = 4
+
+[sub_resource type="Shader" id=19]
+code = "// NOTE: Shader automatically converted from Godot Engine 3.4.stable.mono's SpatialMaterial.
+
+shader_type spatial;
+render_mode blend_mix,unshaded,shadows_disabled;
+
+uniform vec4 _albedo : hint_color;
+uniform sampler2D _texture : hint_albedo;
+
+const vec3 _textureOffset = vec3(0,0,0);
+uniform float _wavespeed;
+uniform vec3 _waveDir;
+
+vec3 movetexture(float time)
+{
+	return _waveDir * time * _wavespeed;
+}
+
+void vertex()
+{
+	UV = UV*vec3(0.7,0.7,0.7).xy+movetexture(TIME).xy;
+}
+
+void fragment() {
+	ALBEDO = _albedo.rgb * texture(_texture,UV).rgb;
+	ALPHA = _albedo.a * texture(_texture,UV).a;
+}
+"
+
+[sub_resource type="ShaderMaterial" id=20]
+shader = SubResource( 19 )
+shader_param/_albedo = Color( 1, 1, 1, 1 )
+shader_param/_wavespeed = 0.015
+shader_param/_waveDir = Vector3( -1, -1, 0 )
+shader_param/_texture = ExtResource( 2 )
+
+[sub_resource type="QuadMesh" id=21]
+material = SubResource( 20 )
+size = Vector2( 10, 10 )
+
+[node name="World" type="Spatial"]
+
+[node name="Mirage Shader" type="Spatial" parent="."]
+visible = false
+
+[node name="Camera" type="Camera" parent="Mirage Shader"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6 )
+
+[node name="Mirage Plane" type="MeshInstance" parent="Mirage Shader/Camera"]
+transform = Transform( 1, 5.96046e-08, -1.77636e-15, 0, -4.37114e-08, -1, -5.96046e-08, 1, -4.37114e-08, 0, 0, -0.7 )
+visible = false
+mesh = SubResource( 13 )
+skeleton = NodePath("../..")
+material/0 = null
+
+[node name="Mirgae Sphere" type="MeshInstance" parent="Mirage Shader/Camera"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -6 )
+mesh = SubResource( 16 )
+skeleton = NodePath("../..")
+material/0 = null
+
+[node name="MeshInstance" type="MeshInstance" parent="Mirage Shader/Camera"]
+
+[node name="MeshInstance" type="MeshInstance" parent="Mirage Shader"]
+mesh = SubResource( 15 )
+material/0 = null
+
+[node name="Dynamic Snow Shader" type="Spatial" parent="."]
+
+[node name="Snow" type="Spatial" parent="Dynamic Snow Shader"]
+script = ExtResource( 5 )
+
+[node name="Viewport" type="Viewport" parent="Dynamic Snow Shader/Snow"]
+size = Vector2( 500, 500 )
+render_target_v_flip = true
+render_target_clear_mode = 2
+
+[node name="Sprite" type="Sprite" parent="Dynamic Snow Shader/Snow/Viewport"]
+scale = Vector2( 0.1, 0.1 )
+texture = ExtResource( 4 )
+
+[node name="Sprite" type="Sprite" parent="Dynamic Snow Shader/Snow"]
+position = Vector2( 100, 100 )
+scale = Vector2( 0.4, 0.4 )
+texture = SubResource( 25 )
+
+[node name="snow" type="MeshInstance" parent="Dynamic Snow Shader/Snow"]
+transform = Transform( 10, 0, 0, 0, 1, 0, 0, 0, 10, 10, 0, 10 )
+mesh = SubResource( 23 )
+material/0 = SubResource( 50 )
+
+[node name="Camera" type="Camera" parent="Dynamic Snow Shader/Snow"]
+transform = Transform( 1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 4.1, 15.9 )
+current = true
+
+[node name="ball" type="MeshInstance" parent="Dynamic Snow Shader/Snow"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2, 1.2, 0.300001 )
+mesh = SubResource( 24 )
+material/0 = SubResource( 39 )
+
+[node name="Rolling Clouds" type="Spatial" parent="."]
+visible = false
+
+[node name="Mist" type="Spatial" parent="."]
+visible = false
+
+[node name="Water" type="Spatial" parent="."]
+visible = false
+
+[node name="Surface Water" type="Spatial" parent="Water"]
+
+[node name="Water" type="MeshInstance" parent="Water/Surface Water"]
+mesh = SubResource( 7 )
+material/0 = null
+
+[node name="Ball" type="MeshInstance" parent="Water/Surface Water"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, 0, 0 )
+mesh = SubResource( 4 )
+material/0 = null
+
+[node name="Surface2" type="MeshInstance" parent="Water/Surface Water"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -0.0999994, 5, 0 )
+mesh = SubResource( 21 )
+material/0 = null
